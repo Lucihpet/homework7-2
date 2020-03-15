@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 public class MaxHeapTest {
@@ -86,6 +88,35 @@ public class MaxHeapTest {
             assertTrue(expectedSize[i] == maxHeap.size);
 
             assertTrue(maxHeap.equals(expected[i]));
+        }
+    }
+
+    @Test
+    public void performanceTests() {
+        Random rand = new Random();
+
+        for (int i = 0; i < 1000; i++) {
+            Integer[] data = new Integer[i];
+
+            for (int j = 0; j < data.length; j++) {
+                data[j] = rand.nextInt(25);
+            }
+
+            System.out.print(i + ", ");
+
+            MaxHeap maxHeap = new MaxHeap(i);
+
+            Long start = System.nanoTime();
+            maxHeap.MaxHeapLogN(data);
+            Long stop = System.nanoTime();
+
+            System.out.print(stop - start + ", ");
+
+            start = System.nanoTime();
+            maxHeap.MaxHeapN(data);
+            stop = System.nanoTime();
+
+            System.out.println(stop - start);
         }
     }
 }
