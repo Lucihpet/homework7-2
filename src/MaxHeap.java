@@ -72,7 +72,7 @@ public class MaxHeap implements Heap {
     // return the max item in the heap
     public Integer get() {
         if (this.size == 0)
-            return null;
+            return -1;
 
         return this.data[0];
     }
@@ -80,7 +80,7 @@ public class MaxHeap implements Heap {
     // remove the root item
     public Integer pop() {
         if (this.size == 0)
-            return null;
+            return -1;
 
         int returnInt = this.data[0];
 
@@ -94,7 +94,10 @@ public class MaxHeap implements Heap {
     }
 
     public boolean equals (Integer[] data) {
-        for (int i = 0; i < this.data.length; i++) {
+        if (this.size != data.length)
+            return false;
+
+        for (int i = 0; i < size; i++) {
             if (this.data[i] != data[i])
                 return false;
         }
